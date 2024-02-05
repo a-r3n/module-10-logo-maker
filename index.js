@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const { Circle, Triangle, Square } = require('./lib/shapes.js')
 
+
+// Function to ask the user questions and get information for the logo
 function askQuestions() {
   const questions = [
     { type: 'input', name: 'text', message: 'Enter up to three characters:', validate: input => input.length <= 3 },
@@ -13,6 +15,8 @@ function askQuestions() {
   return inquirer.prompt(questions);
 }
 
+
+// Create the logo based on the user input
 function generateSVG({ text, textColor, shape, shapeColor }) {
   let shapeObj;
   switch (shape) {
@@ -26,12 +30,14 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
     <text x="150" y="125" font-family="Arial" font-size="40" fill="${textColor}" text-anchor="middle">${text}</text>
   </svg>`;
 
+
+// Check there is an examples folder, if not, make one  
   const examplesDir = './examples';
   if (!fs.existsSync(examplesDir)) {
     fs.mkdirSync(examplesDir);
   }
 
- // Save the SVG file with the unique filename in the "Examples" folder
+ // Save the SVG file in the "Examples" folder
  fs.writeFileSync(`${examplesDir}/logo.svg`, svgContent);
  console.log(`Generated logo.svg`);
 }
