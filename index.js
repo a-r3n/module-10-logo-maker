@@ -26,17 +26,14 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
     <text x="150" y="125" font-family="Arial" font-size="40" fill="${textColor}" text-anchor="middle">${text}</text>
   </svg>`;
 
-  const dateTime = new Date().toISOString().replace(/:/g, '-').replace(/\..+/, '');
-  const filename = `logo-${dateTime}.svg`;
-
   const examplesDir = './examples';
   if (!fs.existsSync(examplesDir)) {
     fs.mkdirSync(examplesDir);
   }
 
  // Save the SVG file with the unique filename in the "Examples" folder
- fs.writeFileSync(`${examplesDir}/${filename}`, svgContent);
- console.log(`Generated ${filename} in the Examples folder.`);
+ fs.writeFileSync(`${examplesDir}/logo.svg`, svgContent);
+ console.log(`Generated logo.svg`);
 }
 
 askQuestions().then(generateSVG);
