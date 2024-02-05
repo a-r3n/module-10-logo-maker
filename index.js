@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { Circle, Triangle, Square } = require('.lib/shapes');
+const { Circle, Triangle, Square } = require('./lib/shapes.js')
 
 function askQuestions() {
   const questions = [
@@ -26,8 +26,13 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
     <text x="150" y="125" font-family="Arial" font-size="40" fill="${textColor}" text-anchor="middle">${text}</text>
   </svg>`;
 
-  fs.writeFileSync('logo.svg', svgContent);
-  console.log('Generated logo.svg');
+  const examplesDir = './examples';
+  if (!fs.existsSync(examplesDir)) {
+    fs.mkdirSync(examplesDir);
+  }
+
+fs.writeFileSync(`${examplesDir}/logo.svg`, svgContent);
+console.log('Generated logo.svg in the Examples folder.');
 }
 
 askQuestions().then(generateSVG);
