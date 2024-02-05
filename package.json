@@ -1,13 +1,15 @@
 {
-    "name": "your-project-name",
+    "name": "logo-generator",
     "version": "1.0.0",
+    "description": "",
     "main": "index.js",
     "scripts": {
-      "test": "jest"
+        "test": "jest"
     },
-    "dependencies": {
-      "inquirer":
-      "jest":
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "inquirer": "^8.2.4",
+        "jest": "^24.9.0"
     }
-  }
-  
+}
